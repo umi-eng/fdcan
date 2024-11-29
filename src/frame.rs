@@ -172,7 +172,7 @@ impl From<&RxFifoElementHeader> for RxFrameInfo {
     fn from(reg: &RxFifoElementHeader) -> Self {
         let reader = reg.read();
         let len = reader.to_data_length();
-        let ff: PacFrameFormat = len.into();
+        let ff = reader.fdf().frame_format();
         let id = reader.id().bits();
         let rtr = reader.rtr().rtr();
         let xtd = reader.xtd().id_type();
