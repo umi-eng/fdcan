@@ -125,7 +125,7 @@ impl From<&TxBufferElementHeader> for TxFrameHeader {
         let rtr = reader.rtr().rtr();
         let xtd = reader.xtd().id_type();
         let len = reader.to_data_length();
-        let ff: PacFrameFormat = len.into();
+        let ff = reader.fdf().frame_format();
         TxFrameHeader {
             len: len.len(),
             frame_format: ff.into(),
